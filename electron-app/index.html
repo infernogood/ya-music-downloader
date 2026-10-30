@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:;"
+    />
+    <title>Ya Music Downloader</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand__mark">Я</span>
+        <span class="brand__title">Music Downloader</span>
+      </div>
+
+      <div class="auth" id="auth">
+        <button class="btn btn--accent" id="btn-login" type="button">
+          Войти через Яндекс ID
+        </button>
+
+        <div class="auth__badge hidden" id="auth-badge">
+          <span class="badge" id="auth-account">Авторизован</span>
+          <button class="btn btn--ghost" id="btn-logout" type="button">Выйти</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="card">
+        <h2 class="card__title">Параметры загрузки</h2>
+
+        <label class="field">
+          <span class="field__label">Ссылка на трек, альбом, плейлист или артиста</span>
+          <input
+            class="input"
+            id="input-url"
+            type="url"
+            spellcheck="false"
+            autocomplete="off"
+            placeholder="https://music.yandex.ru/album/1234567"
+          />
+        </label>
+
+        <div class="row">
+          <label class="field">
+            <span class="field__label">Качество</span>
+            <select class="input" id="select-quality">
+              <option value="2" selected>Lossless (FLAC)</option>
+              <option value="1">Normal (AAC/MP3)</option>
+              <option value="0">Low</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span class="field__label">Текст песни</span>
+            <select class="input" id="select-lyrics">
+              <option value="lrc">LRC (синхронный)</option>
+              <option value="text">Текст</option>
+              <option value="none" selected>Без текста</option>
+            </select>
+          </label>
+        </div>
+
+        <label class="field">
+          <span class="field__label">Папка сохранения</span>
+          <div class="field__row">
+            <input
+              class="input"
+              id="input-dir"
+              type="text"
+              readonly
+              placeholder="Папка не выбрана"
+            />
+            <button class="btn btn--ghost" id="btn-browse" type="button">Обзор…</button>
+          </div>
+        </label>
+
+        <div class="checks">
+          <label class="check">
+            <input type="checkbox" id="check-cover" />
+            <span>Вшивать обложку</span>
+          </label>
+          <label class="check">
+            <input type="checkbox" id="check-skip" />
+            <span>Пропускать существующие</span>
+          </label>
+        </div>
+
+        <div class="actions">
+          <button class="btn btn--accent btn--wide" id="btn-start" type="button">
+            Скачать
+          </button>
+          <button class="btn btn--danger btn--wide" id="btn-cancel" type="button" disabled>
+            Остановить
+          </button>
+        </div>
+      </section>
+
+      <section class="card card--progress">
+        <h2 class="card__title">Прогресс</h2>
+
+        <div class="progress__head">
+          <span class="progress__queue" id="queue-title">Очередь не запущена</span>
+          <span class="progress__count" id="queue-count">0 из 0</span>
+        </div>
+
+        <div class="progress__bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress-bar">
+          <div class="progress__fill" id="progress-fill"></div>
+        </div>
+
+        <div class="progress__track" id="current-track">—</div>
+
+        <div class="stats">
+          <span class="stats__item stats__item--ok">Скачано: <b id="stat-done">0</b></span>
+          <span class="stats__item stats__item--warn">Пропущено: <b id="stat-skipped">0</b></span>
+          <span class="stats__item stats__item--err">Ошибок: <b id="stat-errors">0</b></span>
+        </div>
+
+        <div class="log" id="log" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <script src="renderer.js"></script>
+  </body>
+</html>

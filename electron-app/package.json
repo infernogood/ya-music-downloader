@@ -1,0 +1,63 @@
+{
+  "name": "ymd-electron",
+  "productName": "Ya Music Downloader",
+  "version": "0.1.0",
+  "description": "Ya Music Downloader — Electron UI поверх Python sidecar (ymd.ipc)",
+  "private": true,
+  "license": "MIT",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --debug",
+    "build:win": "electron-builder --win --x64",
+    "build:linux": "electron-builder --linux rpm --x64",
+    "build": "electron-builder --win --linux rpm --x64",
+    "build:linux-dir": "electron-builder --linux dir --x64"
+  },
+  "devDependencies": {
+    "electron": "^35.0.0",
+    "electron-builder": "^26.18.0"
+  },
+  "build": {
+    "appId": "com.yandexmusic.downloader",
+    "productName": "Ya Music Downloader",
+    "directories": {
+      "output": "dist",
+      "buildResources": "assets"
+    },
+    "files": [
+      "**/*",
+      "!node_modules/electron/dist/**"
+    ],
+    "extraResources": [
+      {
+        "from": "../programms-source-code/yandex-music-downloader-3.5.5/ymd",
+        "to": "ymd",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "icon": "assets/icon.png",
+    "win": {
+      "target": [
+        "portable"
+      ],
+      "icon": "assets/icon.ico"
+    },
+    "linux": {
+      "target": [
+        "rpm"
+      ],
+      "icon": "assets/icon.png",
+      "category": "AudioVideo",
+      "maintainer": "Ya Music Downloader <dev@example.com>"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  },
+  "author": "Ya Music Downloader",
+  "homepage": "https://github.com/llistochek/yandex-music-downloader"
+}

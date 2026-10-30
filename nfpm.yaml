@@ -1,0 +1,20 @@
+name: ymd-electron
+arch: x86_64
+platform: linux
+version: 0.1.0
+section: default
+priority: optional
+maintainer: Ya Music Downloader <dev@example.com>
+description: Ya Music Downloader — Electron UI поверх Python sidecar (ymd.ipc)
+license: MIT
+homepage: https://github.com/llistochek/yandex-music-downloader
+rpm:
+  summary: Ya Music Downloader
+  group: Applications/Multimedia
+contents:
+  - src: ./build/rpm-staging/opt/ymd-electron
+    dst: /opt/ymd-electron
+  - src: ./build/rpm-staging/opt/yandex-music-downloader
+    dst: /opt/yandex-music-downloader
+  - src: ./build/rpm-staging/usr
+    dst: /usr

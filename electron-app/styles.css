@@ -1,0 +1,488 @@
+/* Тёмная тема в стиле Яндекс.Музыки: чёрно-серый фон, жёлтый акцент. */
+
+:root {
+  --bg: #0e0e0e;
+  --bg-soft: #181818;
+  --panel: #1f1f1f;
+  --panel-hover: #262626;
+  --border: #2e2e2e;
+  --text: #f2f2f2;
+  --muted: #9a9a9a;
+  --accent: #ffcc00;
+  --accent-dark: #d9ad00;
+  --ok: #3ddc84;
+  --warn: #ffb020;
+  --err: #ff5757;
+  --radius: 12px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Inter", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- шапка ---------- */
+
+.topbar {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 20px;
+  background: var(--bg-soft);
+  border-bottom: 1px solid var(--border);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.brand__mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #101010;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.brand__title {
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+}
+
+.auth {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.auth__badge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(61, 220, 132, 0.14);
+  border: 1px solid rgba(61, 220, 132, 0.4);
+  color: var(--ok);
+  font-size: 13px;
+  font-weight: 600;
+  max-width: 320px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.badge::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ok);
+  flex: 0 0 auto;
+}
+
+/* ---------- раскладка ---------- */
+
+.layout {
+  flex: 1 1 auto;
+  display: grid;
+  grid-template-columns: minmax(340px, 420px) minmax(0, 1fr);
+  gap: 16px;
+  padding: 16px 20px 20px;
+  min-height: 0;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 18px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.card--progress {
+  overflow: hidden;
+}
+
+.card__title {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ---------- поля ---------- */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.field__label {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.field__row {
+  display: flex;
+  gap: 8px;
+  min-width: 0;
+}
+
+.field__row .input {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg-soft);
+  color: var(--text);
+  font: inherit;
+  outline: none;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.input::placeholder {
+  color: #6d6d6d;
+}
+
+.input:focus {
+  border-color: var(--accent);
+  background: #1b1b1b;
+}
+
+.input[readonly] {
+  color: var(--muted);
+  cursor: default;
+}
+
+select.input {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%),
+    linear-gradient(135deg, var(--muted) 50%, transparent 50%);
+  background-position: calc(100% - 18px) 50%, calc(100% - 12px) 50%;
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+  padding-right: 32px;
+  cursor: pointer;
+}
+
+/* ---------- чекбоксы ---------- */
+
+.checks {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 4px 0;
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+  cursor: pointer;
+  user-select: none;
+}
+
+.check input[type="checkbox"] {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--bg-soft);
+  cursor: pointer;
+  position: relative;
+  flex: 0 0 auto;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.check input[type="checkbox"]:checked {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.check input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  width: 5px;
+  height: 9px;
+  border: solid #101010;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* ---------- кнопки ---------- */
+
+.btn {
+  padding: 10px 16px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease,
+    opacity 0.15s ease;
+  white-space: nowrap;
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn--accent {
+  background: var(--accent);
+  color: #101010;
+}
+
+.btn--accent:hover:not(:disabled) {
+  background: var(--accent-dark);
+}
+
+.btn--ghost {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--text);
+}
+
+.btn--ghost:hover:not(:disabled) {
+  background: var(--panel-hover);
+  border-color: #3d3d3d;
+}
+
+.btn--danger {
+  background: transparent;
+  border-color: rgba(255, 87, 87, 0.45);
+  color: var(--err);
+}
+
+.btn--danger:hover:not(:disabled) {
+  background: rgba(255, 87, 87, 0.12);
+}
+
+.btn--wide {
+  flex: 1 1 0;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 4px;
+}
+
+/* ---------- прогресс ---------- */
+
+.progress__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.progress__queue {
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.progress__count {
+  color: var(--muted);
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.progress__bar {
+  position: relative;
+  height: 8px;
+  border-radius: 999px;
+  background: #2a2a2a;
+  overflow: hidden;
+}
+
+.progress__fill {
+  height: 100%;
+  width: 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent-dark), var(--accent));
+  transition: width 0.25s ease;
+}
+
+.progress__track {
+  font-size: 13px;
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.stats {
+  display: flex;
+  gap: 16px;
+  font-size: 12px;
+  color: var(--muted);
+  flex-wrap: wrap;
+}
+
+.stats__item--ok b {
+  color: var(--ok);
+}
+
+.stats__item--warn b {
+  color: var(--warn);
+}
+
+.stats__item--err b {
+  color: var(--err);
+}
+
+/* ---------- лог ---------- */
+
+.log {
+  flex: 1 1 auto;
+  min-height: 140px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #141414;
+  font-family: "JetBrains Mono", "Consolas", "Menlo", monospace;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.log__row {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  word-break: break-word;
+}
+
+.log__time {
+  flex: 0 0 auto;
+  color: #5f5f5f;
+}
+
+.log__text {
+  flex: 1 1 auto;
+  color: #cfcfcf;
+}
+
+.log__row--ok .log__text {
+  color: var(--ok);
+}
+
+.log__row--warn .log__text {
+  color: var(--warn);
+}
+
+.log__row--err .log__text {
+  color: var(--err);
+}
+
+.log__row--info .log__text {
+  color: #a8a8a8;
+}
+
+.log__empty {
+  color: #5f5f5f;
+  font-style: italic;
+}
+
+/* ---------- прокрутка ---------- */
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #444;
+  background-clip: content-box;
+}
+
+/* ---------- утилиты ---------- */
+
+.hidden {
+  display: none !important;
+}
+
+@media (max-width: 860px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
